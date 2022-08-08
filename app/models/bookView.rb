@@ -1,0 +1,2 @@
+class BookView < ApplicationRecord
+end

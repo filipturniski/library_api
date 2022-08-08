@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_08_131147) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_08_170011) do
   create_table "authors", force: :cascade do |t|
+    t.integer "idAuthor"
     t.string "nameAuthor"
     t.integer "status"
     t.date "createDate"
@@ -52,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_131147) do
     t.string "idMember"
     t.string "firstName"
     t.string "lastName"
+    t.string "username"
     t.string "email"
     t.integer "phoneNumber"
     t.integer "status"
