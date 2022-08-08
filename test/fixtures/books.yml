@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idAuthor: 1
+  nameBook: MyString
+  bookLocation: MyString
+  status: 1
+  createDate: 2022-08-08
+  createBy: MyString
+  modifyDate: 2022-08-08
+  modifyBy: MyString
+
+two:
+  idAuthor: 1
+  nameBook: MyString
+  bookLocation: MyString
+  status: 1
+  createDate: 2022-08-08
+  createBy: MyString
+  modifyDate: 2022-08-08
+  modifyBy: MyString
