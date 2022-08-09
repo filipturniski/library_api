@@ -1,4 +1,4 @@
-class Authors < ApplicationRecord
+class Author < ApplicationRecord
   validates :name_author, presence: true
   belongs_to :status
   def self.search(searchMember)
