@@ -4,19 +4,34 @@
 	+kreiranje pretraživanje krinjga
 	+kreiranje rpetraživanje autora
 Library management system 
+	+provjera dostupnih knjiga i autora
+	
 	dodavanje nove knjige
-	dodavanje nogog autora
 	editiranje knjige
-	editiranje autora
 	soft brisanje knjiga
+	
+	dodavanje nogog autora
+	editiranje autora
 	soft brisanje autora
+	
 	dodavanje membera
 	editiranje memebera
 	soft brisanje membera
-	pregled koji vrača samo slobodne knjige
+	
+	pregled koji vrača samo slobodne knjige (pretraga po dijelu naziva knjige, i/ili autora)
 	posudba knjiga
+		validacija da li je knjigu moguce posuditi i da li member postoji
 	provjera da li member ima već posuđeno 3, ili više knjiga
 	vračanej knjiga
+		validacija imena knjige i membera
 	storno posudbe
-Member dashboard
+		validacija imena knjige i membera
 	
+	kreiranje authentifikacije
+	validacija korisnika kod bilo koje CRUD akcije
+	logiranje poziva apija (koji je korisnik što radio)
+Member dashboard
+	pregled povjesti posudbe
+	kreiranje authentifikacije
+	
+Napraviti testove
