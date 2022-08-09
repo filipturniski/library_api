@@ -4,17 +4,11 @@ class BookFreeView < ActiveRecord::Migration[7.0]
       dir.up do
         execute <<-SQL
           CREATE VIEW book_free_views AS
-            select b.name ,
-            a.id as author_id,
-            a.name_author ,
-            count(b.id) as numberOfCopies
-           from authors a
-          JOIN books b ON  b.authors_id = a.id
-		   where b.status_id = 1
-		   and a.status_id = 1
-          GROUP BY  b.name ,
-           a.id,
-           a.name_author;
+            select book_id, book_name, book_id, author_id, status_id from (
+            select b.id as book_id, b.name as book_name, b.authors_id as author_id, l.updated_at, l.status_id from books b
+              left join loans l on b.id = l.book_id
+              order by l.updated_at desc)
+            group by book_id, book_name, book_id;
         SQL
       end
 

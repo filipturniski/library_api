@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   create_table "authors", force: :cascade do |t|
     t.string "name_author", null: false
-    t.integer "status_id", default: 1
+    t.integer "status_id", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status_id"], name: "index_authors_on_status_id"
@@ -22,8 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   create_table "books", force: :cascade do |t|
     t.string "name", null: false
     t.string "location"
-    t.integer "status_id", default: 1
-    t.integer "authors_id"
+    t.integer "status_id", default: 1, null: false
+    t.integer "authors_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authors_id"], name: "index_books_on_authors_id"
@@ -31,15 +31,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   end
 
   create_table "loans", force: :cascade do |t|
-    t.integer "idMember"
-    t.integer "idBook"
-    t.integer "status"
-    t.date "createDate"
-    t.string "createBy"
-    t.date "modifyDate"
-    t.string "modifyBy"
+    t.integer "member_id", null: false
+    t.integer "book_id", null: false
+    t.integer "status_id", default: 3, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_loans_on_book_id"
+    t.index ["member_id"], name: "index_loans_on_member_id"
+    t.index ["status_id"], name: "index_loans_on_status_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -48,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
     t.string "username", null: false
     t.string "email"
     t.integer "phone_number"
-    t.integer "status_id", default: 1
+    t.integer "status_id", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status_id"], name: "index_members_on_status_id"
@@ -63,5 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   add_foreign_key "authors", "statuses"
   add_foreign_key "books", "authors", column: "authors_id"
   add_foreign_key "books", "statuses"
+  add_foreign_key "loans", "books"
+  add_foreign_key "loans", "members"
+  add_foreign_key "loans", "statuses"
   add_foreign_key "members", "statuses"
 end

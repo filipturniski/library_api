@@ -8,7 +8,7 @@ module Api
         end
 
         def search
-          author = Authors.where(" upper(name_author) LIKE upper(?) and status_id <> 3", "%#{params[:authorName]}%").select('id', 'name_author', 'status_id').order('name_author ASC')
+          author = Authors.where(" upper(name_author) LIKE upper(?) and status_id = 1", "%#{params[:authorName]}%").select('id', 'name_author', 'status_id').order('name_author ASC')
           render json: { status: 'SUCCESS', message: 'Loaded author', data: author }, status: :ok
         end
 
@@ -23,7 +23,7 @@ module Api
         end
 
         def destroy
-          updateAuthorTable(params, 'Deleted Author', 'Not Author Author', status_id: 3)
+          updateAuthorTable(params, 'Deleted Author', 'Not Author Author', status_id: 5)
         end
 
         def update
@@ -36,12 +36,12 @@ module Api
           params.permit(:name_author, :status_id)
         end
 
-        def updateAuthorTable(params, message, errorMessage, updateValue)
+        def updateAuthorTable(params, message, errorMessage, updateValue)#TODO check if there is change
           if params[:id].to_i != 0
-            author = Authors.where(" id is ? and status_id <>3", params[:id]).update(updateValue)
+            author = Authors.where(" id is ? and status_id = 1", params[:id]).update(updateValue)
             ifUpdatedAuthorTable(author, message, errorMessage)
           else
-            author = Authors.where(" name is ? and status_id <>3", params[:id])
+            author = Authors.where(" name is ? and status_id = 1", params[:id])
             ifUpdatedAuthorTable(author, message, errorMessage)
           end
         end

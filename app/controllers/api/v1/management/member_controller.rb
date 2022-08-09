@@ -24,7 +24,7 @@ module Api
         end
 
         def destroy
-          updateMemberTable(params, 'Deleted Member', 'Not Deleted Member', status_id: 3)
+          updateMemberTable(params, 'Deleted Member', 'Not Deleted Member', status_id: 5)
         end
 
         def update
@@ -37,12 +37,12 @@ module Api
           params.permit(:first_name, :last_name, :username, :email, :phone_number)
         end
 
-        def updateMemberTable(params, message, errorMessage, updateValue)
+        def updateMemberTable(params, message, errorMessage, updateValue)#TODO check if there is change
           if params[:id].to_i != 0
-            member = Member.where(" id is ? and status_id <>3", params[:id]).update(updateValue)
+            member = Member.where(" id is ? and status_id = 1", params[:id]).update(updateValue)
             ifUpdatedMemberTable(member, message, errorMessage)
           else
-            member = Member.where(" name is ? and status_id <>3", params[:id])
+            member = Member.where(" name is ? and status_id = 1", params[:id])
             ifUpdatedMemberTable(member, message, errorMessage)
           end
         end

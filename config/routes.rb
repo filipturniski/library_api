@@ -29,6 +29,18 @@ Rails.application.routes.draw do
                 get :search
               end
             end
+            resources :loan,  only: [ :create, :index, :create, :destroy, :update] do
+              collection do
+                get :search
+              end
+            end
+          end
+          namespace 'dashboard' do
+            resources :loans,  only: [ :search] do
+              collection do
+                get :search
+              end
+            end
           end
         end
     end

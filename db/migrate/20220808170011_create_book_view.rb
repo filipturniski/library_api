@@ -10,6 +10,8 @@ class CreateBookView < ActiveRecord::Migration[7.0]
             count(b.id) as numberOfCopies
            from authors a
           JOIN books b ON  b.authors_id = a.id
+            where b.status_id = 1
+		        and a.status_id = 1
           GROUP BY  b.name ,
            a.id,
            a.name_author;

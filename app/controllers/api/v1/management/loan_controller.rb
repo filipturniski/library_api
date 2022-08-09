@@ -3,55 +3,53 @@ module Api
     module Management
       class LoanController < ApplicationController
         def index
-          book = BookFreeView.select('name', 'name_author', 'numberOfCopies').order('name ASC')
-          render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
-        end
-
-        def search
-          book = BookFreeView.select('name', 'name_author', 'numberOfCopies').order('name ASC')
-          book = book.search(params[:bookName])
-          render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
+          loan = Loan.order('id ASC')
+          render json: { status: 'SUCCESS', message: 'Loaded Loans', data: loan }, status: :ok
         end
 
         def create
-          book = Book.new(book_params)
-          if book.save
-            render json: { status: 'SUCCESS', message: 'Book saved', data: book }, status: :ok
+          availableBooks = BookFreeView.where(" book_name is ? and (author_id is ? or ? is null)  and (status_id = 4 or status_id is null) ", params[:book_name], params[:author_id], params[:author_id]).first
+          if availableBooks.present?
+            if Loan.where(" member_id = ?", params[:member_id]).count <3
+              loan = Loan.new({"member_id": 1, "book_id": availableBooks.book_id, "status_id": 3})
+              if loan.save
+                render json: { status: 'SUCCESS', message: 'Loan created', data: loan }, status: :ok
+              else
+                render json: { status: 'ERROR', message: 'Loan not created', data: loan.errors },
+                       status: :unprocessable_entity
+              end
+            else
+              render json: { status: 'ERROR', message: 'the maximum number of borrowed books has been reached', data: loan },
+                     status: :unprocessable_entity
+            end
+
           else
-            render json: { status: 'ERROR', message: 'Book not saved', data: book.errors },
+            render json: { status: 'ERROR', message: 'there is no more book with that name available', data: loan },
                    status: :unprocessable_entity
           end
+
         end
 
         def destroy
-          updateBookTable(params, 'Deleted Book', 'Not Deleted Book', status_id: 3)
+          updateLoanTable(params, 'Deleted Loan', 'Not Deleted Loan', status_id: 5)
         end
 
         def update
-          updateBookTable(params, 'Book updated', 'Book not updated', book_params)
+          updateLoanTable(params, 'Loan updated', 'Loan not updated', loan_params)
         end
 
         private
 
-        def book_params
-          params.permit(:name, :location, :status_id, :authors_id)
+        def loan_params
+          params.permit(:status_id)
         end
 
-        def updateBookTable(params, message, errorMessage, updateValue)
-          if params[:id].to_i != 0
-            book = Book.where(" id is ? and status_id <>3", params[:id]).update(updateValue)
-            ifUpdatedBookTable(book, message, errorMessage)
-          else
-            book = Book.where(" name is ? and status_id <>3", params[:id])
-            ifUpdatedBookTable(book, message, errorMessage)
-          end
-        end
-
-        def ifUpdatedBookTable(book, message, errorMessage)
-          if book.presence
-            render json: { status: 'SUCCESS', message: message, data: book }, status: :ok
+        def updateLoanTable(params, message, errorMessage,updateValue) #TODO check if there is change
+          loan = Loan.find(params[:id]).update(updateValue)
+          if loan.presence
+            render json: { status: 'SUCCESS', message: message, data: loan }, status: :ok
           else #TODO error hendeling
-            render json: { status: 'ERROR', message: errorMessage, data: book },
+            render json: { status: 'ERROR', message: errorMessage, data: loan },
                    status: :unprocessable_entity
           end
         end
