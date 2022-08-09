@@ -3,13 +3,13 @@ module Api
     module Catalog
       class AuthorsController < ApplicationController
         def index
-          books = BookView.order('name ASC')
-          render json: {status: 'SUCCESS', message: 'Loaded Books', data:books}, status: :ok
+          authors = BookView.select('name_author', 'author_id').order('name ASC')
+          render json: {status: 'SUCCESS', message: 'Loaded Books', data:authors}, status: :ok
         end
         def search
-          books = BookView.order('name ASC')
-          books = books.search(params[:bookName]) if params[:bookName].present?
-          render json: {status: 'SUCCESS', message: 'Loaded Books', data:books}, status: :ok
+          authors = BookView.select('name_author', 'author_id').order('name ASC')
+          authors = authors.search(params[:authorName]) if params[:authorName].present?
+          render json: {status: 'SUCCESS', message: 'Loaded Books', data:authors}, status: :ok
         end
 
       end
