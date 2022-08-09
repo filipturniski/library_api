@@ -2,7 +2,7 @@ module Api
   module V1
     class StatusController < ApplicationController
       def index
-        status = Status.order('idStatus ASC')
+        status = Status.order('id ASC')
         render json: {status: 'SUCCESS', message: 'Loaded Status', data:status}, status: :ok
       end
 

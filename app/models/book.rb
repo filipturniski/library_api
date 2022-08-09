@@ -1,9 +1,8 @@
 class Book < ApplicationRecord
-  validates :idBook, presence: true
-  validates :idAuthor, presence: true
-  validates :nameBook, presence: true
-  validates :bookLocation, presence: true
-  validates :status, presence: true
-  validates :createDate, presence: true
-  validates :createBy, presence: true
+  validates :name, presence: true
+  validates :location, presence: true
+  belongs_to :status
+  belongs_to :authors
+  #belongs_to :creator
+  #belongs_to :updater
 end
