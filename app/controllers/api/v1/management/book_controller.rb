@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Api
   module V1
     module Management
@@ -11,7 +9,7 @@ module Api
 
         def search
           book = BookFreeView.select('name', 'name_author', 'numberOfCopies').order('name ASC')
-          book = book.search(params[:bookName]) if params[:bookName].present?
+          book = book.search(params[:bookName])
           render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
         end
 
@@ -26,7 +24,7 @@ module Api
         end
 
         def destroy
-          updateBookTable(params, 'Deleted Book', 'Not Deleted Book', status_id: 4)
+          updateBookTable(params, 'Deleted Book', 'Not Deleted Book', status_id: 3)
         end
 
         def update
@@ -41,10 +39,10 @@ module Api
 
         def updateBookTable(params, message, errorMessage, updateValue)
           if params[:id].to_i != 0
-            book = Book.where(" id is ?", params[:id]).update(updateValue)
+            book = Book.where(" id is ? and status_id <>3", params[:id]).update(updateValue)
             ifUpdatedBookTable(book, message, errorMessage)
           else
-            book = Book.where(" name is ?", params[:id])
+            book = Book.where(" name is ? and status_id <>3", params[:id])
             ifUpdatedBookTable(book, message, errorMessage)
           end
         end

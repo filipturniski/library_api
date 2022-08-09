@@ -6,9 +6,9 @@
 Library management system 
 	+provjera dostupnih knjiga i autora
 	
-	dodavanje nove knjige
-	editiranje knjige
-	soft brisanje knjiga
+	+dodavanje nove knjige
+	+editiranje knjige
+	+soft brisanje knjiga
 	
 	dodavanje nogog autora
 	editiranje autora
