@@ -8,9 +8,7 @@ module Api
         end
 
         def search
-          book = Book.where(" upper(name) like upper(?) or authors_id in (select id from authors where upper(name_author) like upper(?))
-                and status_id = 1", "%#{params[:bookName]}%", "%#{params[:bookName]}%").order('name ASC')
-          #book = book.search(params[:bookName])
+          book = Book.search(params[:bookName]).order('name ASC')
           render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
         end
 
@@ -40,10 +38,10 @@ module Api
 
         def updateBookTable(params, message, errorMessage, updateValue)#TODO check if there is change
           if params[:id].to_i != 0
-            book = Book.where(" id is ? and status_id = 1", params[:id]).update(updateValue)
+            book = Book.searchActiveBookId(params[:id]).update(updateValue)
             ifUpdatedBookTable(book, message, errorMessage)
           else
-            book = Book.where(" name is ? and status_id = 1", params[:id])
+            book = Book.searchActiveBookName(params[:id])
             ifUpdatedBookTable(book, message, errorMessage)
           end
         end
