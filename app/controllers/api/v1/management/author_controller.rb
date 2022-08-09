@@ -3,12 +3,12 @@ module Api
     module Management
       class AuthorController < ApplicationController
         def index
-          author = Authors.select('id', 'name_author', 'status_id').order('name ASC')
+          author = Authors.order('name ASC')
           render json: { status: 'SUCCESS', message: 'Loaded Authors', data: author }, status: :ok
         end
 
         def search
-          author = Authors.where(" upper(name_author) LIKE upper(?) and status_id = 1", "%#{params[:authorName]}%").select('id', 'name_author', 'status_id').order('name_author ASC')
+          author = Authors.search(params[:authorName]).select('id', 'name_author', 'status_id').order('name_author ASC')
           render json: { status: 'SUCCESS', message: 'Loaded author', data: author }, status: :ok
         end
 
@@ -38,10 +38,10 @@ module Api
 
         def updateAuthorTable(params, message, errorMessage, updateValue)#TODO check if there is change
           if params[:id].to_i != 0
-            author = Authors.where(" id is ? and status_id = 1", params[:id]).update(updateValue)
+            author = Authors.searchActiveAuthorsId(params[:id]).update(updateValue)
             ifUpdatedAuthorTable(author, message, errorMessage)
           else
-            author = Authors.where(" name is ? and status_id = 1", params[:id])
+            author = Authors.searchActiveAuthorsName(params[:id])
             ifUpdatedAuthorTable(author, message, errorMessage)
           end
         end

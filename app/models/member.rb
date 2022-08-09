@@ -9,4 +9,12 @@ class Member < ApplicationRecord
   def self.search(searchText)
     where(" upper(first_name) LIKE upper(?) or upper(last_name) LIKE upper(?) or upper(username) LIKE upper(?)", "%#{searchText}%", "%#{searchText}%", "%#{searchText}%")
   end
+
+  def self.searchActiveMemeberId(searchId)
+    where(" id is ? and status_id = 1", "#{searchId}")
+  end
+
+  def self.searchActiveMemeberName(searchId)
+    where(" name is ? and status_id = 1", "#{searchId}")
+  end
 end

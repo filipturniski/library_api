@@ -4,6 +4,7 @@
 	+kreiranje pretraživanje svih krinjga
 	kreiranje pretraživanje samo slobodnih knjiga
 	+kreiranje rpetraživanje autora
+
 Library management system 2022.08.08 09:10 - 2022.08.08 18:10
 	+provjera dostupnih knjiga i autora
 	
@@ -31,6 +32,7 @@ Library management system 2022.08.08 09:10 - 2022.08.08 18:10
 	
 	kreiranje authentifikacije
 	
+
 Member dashboard 2022.08.08 09:10 - 2022.08.08 18:10
 	+pregled povjesti posudbe
 	kreiranje authentifikacije	

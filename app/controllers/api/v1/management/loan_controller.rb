@@ -8,9 +8,9 @@ module Api
         end
 
         def create
-          availableBooks = BookFreeView.where(" book_name is ? and (author_id is ? or ? is null)  and (status_id = 4 or status_id is null) ", params[:book_name], params[:author_id], params[:author_id]).first
+          availableBooks = BookFreeView.search( params[:book_name]).first
           if availableBooks.present?
-            if Loan.where(" member_id = ?", params[:member_id]).count <3
+            if Loan.searchActiveMemeberLoans(params[:member_id]).count <3
               loan = Loan.new({"member_id": 1, "book_id": availableBooks.book_id, "status_id": 3})
               if loan.save
                 render json: { status: 'SUCCESS', message: 'Loan created', data: loan }, status: :ok
