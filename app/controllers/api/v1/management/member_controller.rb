@@ -39,10 +39,10 @@ module Api
 
         def updateMemberTable(params, message, errorMessage, updateValue)#TODO check if there is change
           if params[:id].to_i != 0
-            member = Member.where(" id is ? and status_id = 1", params[:id]).update(updateValue)
+            member = Member.searchActiveMemeberId(params[:id]).update(updateValue)
             ifUpdatedMemberTable(member, message, errorMessage)
           else
-            member = Member.where(" name is ? and status_id = 1", params[:id])
+            member = Member.searchActiveMemebername(params[:id])
             ifUpdatedMemberTable(member, message, errorMessage)
           end
         end

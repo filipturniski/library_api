@@ -1,0 +1,654 @@
+{
+	"info": {
+		"_postman_id": "c19e89ea-8993-4474-8543-9060c68d6ad3",
+		"name": "library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7528849"
+	},
+	"item": [
+		{
+			"name": "catalog",
+			"item": [
+				{
+					"name": "Get books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/catalog/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"catalog",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/catalog/books/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"catalog",
+								"books",
+								"search"
+							],
+							"query": [
+								{
+									"key": "bookName",
+									"value": "ok2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/catalog/authors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"catalog",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authorNAme",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/catalog/authors/search?authorName=ok2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"catalog",
+								"authors",
+								"search"
+							],
+							"query": [
+								{
+									"key": "authorName",
+									"value": "ok2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "management",
+			"item": [
+				{
+					"name": "BOOKS",
+					"item": [
+						{
+							"name": "book search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/book/search?bookName=book2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"book",
+										"search"
+									],
+									"query": [
+										{
+											"key": "bookName",
+											"value": "book2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save new book",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/book?name=test kreiranja knjige iz posta&location=lokacija&status_id=1&authors_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"book"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "test kreiranja knjige iz posta"
+										},
+										{
+											"key": "location",
+											"value": "lokacija"
+										},
+										{
+											"key": "status_id",
+											"value": "1"
+										},
+										{
+											"key": "authors_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete book/books",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/book/32",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"book",
+										"32"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update book",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/book/32?name=novo ime",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"book",
+										"32"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "novo ime"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AUTHORS",
+					"item": [
+						{
+							"name": "search author",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/author/search?authorName=Author1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"author",
+										"search"
+									],
+									"query": [
+										{
+											"key": "authorName",
+											"value": "Author1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create author",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/author?name_author=novi autor&status_id=4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"author"
+									],
+									"query": [
+										{
+											"key": "name_author",
+											"value": "novi autor"
+										},
+										{
+											"key": "status_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update author",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/author/8?name_author=novo ime",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"author",
+										"8"
+									],
+									"query": [
+										{
+											"key": "name_author",
+											"value": "novo ime"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete author",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/author/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"author",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MEMBERS",
+					"item": [
+						{
+							"name": "member search",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user_name",
+										"value": "peric",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/member/search?user_name=štef",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"member",
+										"search"
+									],
+									"query": [
+										{
+											"key": "user_name",
+											"value": "štef"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create member",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/member?first_name=post name&last_name=psot last name&username=post username",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"member"
+									],
+									"query": [
+										{
+											"key": "first_name",
+											"value": "post name"
+										},
+										{
+											"key": "last_name",
+											"value": "psot last name"
+										},
+										{
+											"key": "username",
+											"value": "post username"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update member",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/member/5?email=test_email@email.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"member",
+										"5"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "test_email@email.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete member",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/member/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"member",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "LOANS",
+					"item": [
+						{
+							"name": "loans search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/loan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create loan",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/loan?book_name=Test book1&member_id=1&author_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"loan"
+									],
+									"query": [
+										{
+											"key": "book_name",
+											"value": "Test book1"
+										},
+										{
+											"key": "member_id",
+											"value": "1"
+										},
+										{
+											"key": "book_id",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "status_id",
+											"value": "4",
+											"disabled": true
+										},
+										{
+											"key": "author_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update loan",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/loan/18?status_id=4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"loan",
+										"18"
+									],
+									"query": [
+										{
+											"key": "status_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete loan",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/management/loan/18",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"management",
+										"loan",
+										"18"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DASHBOARD",
+			"item": [
+				{
+					"name": "User loans",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
