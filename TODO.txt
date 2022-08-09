@@ -6,14 +6,17 @@
 Library management system 
 	+provjera dostupnih knjiga i autora
 	
+	+pretraživanje po nazivu knjige, ili nazivu autora
 	+dodavanje nove knjige
 	+editiranje knjige
 	+soft brisanje knjiga
 	
-	dodavanje nogog autora
-	editiranje autora
-	soft brisanje autora
+	+pretraživanje po nazivu autora
+	+dodavanje nogog autora
+	+editiranje autora
+	+soft brisanje autora
 	
+	pretraživanje membera po useru, imenu, ili prezimenu
 	dodavanje membera
 	editiranje memebera
 	soft brisanje membera
