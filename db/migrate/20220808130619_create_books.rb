@@ -1,15 +1,12 @@
 class CreateBooks < ActiveRecord::Migration[7.0]
   def change
     create_table :books do |t|
-      t.integer :idBook
-      t.integer :idAuthor
-      t.string :nameBook
-      t.string :bookLocation
-      t.integer :status
-      t.date :createDate
-      t.string :createBy
-      t.date :modifyDate
-      t.string :modifyBy
+      t.string :name, null: false
+      t.string :location, presence: true
+      t.belongs_to :status, default: 1, index: true, foreign_key: true
+      t.belongs_to :authors, index: true, foreign_key: true
+      #t.belongs_to :creator, index: true, foreign_key: true
+      #t.belongs_to :updater, index: true, foreign_key: true
 
       t.timestamps
     end

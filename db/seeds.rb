@@ -6,51 +6,51 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Status.destroy_all
-Status.create([{idStatus: 0,descriptionStatus:"INACTIVE"},
-               {idStatus: 1,descriptionStatus:"ACTIVE"},
-               {idStatus: 2,descriptionStatus:"ON_LOAN"},
-               {idStatus: 3,descriptionStatus:"DELETED"}])
+Status.create([{id: 4,descriptionStatus:"INACTIVE"},
+               {id: 1,descriptionStatus:"ACTIVE"},
+               {id: 2,descriptionStatus:"ON_LOAN"},
+               {id: 3,descriptionStatus:"DELETED"}])
 
-Author.destroy_all
-Author.create([{idAuthor:1, nameAuthor:"Test Author1", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-               {idAuthor:2, nameAuthor:"Test Author2", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-               {idAuthor:3, nameAuthor:"Test Author3", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-               {idAuthor:4, nameAuthor:"Test Author4", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-               {idAuthor:5, nameAuthor:"Test Author5", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-               {idAuthor:6, nameAuthor:"Test Author6", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-               {idAuthor:7, nameAuthor:"Test Author7", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" }
+Authors.destroy_all
+Authors.create([{id:1, name_author:"Test Author1", status_id:1},
+               {id:2, name_author:"Test Author2", status_id:1 },
+               {id:3, name_author:"Test Author3", status_id:1 },
+               {id:4, name_author:"Test Author4", status_id:1},
+               {id:5, name_author:"Test Author5", status_id:1},
+               {id:6, name_author:"Test Author6", status_id:1 },
+               {id:7, name_author:"Test Author7", status_id:1 }
               ])
 
 Book.destroy_all
 Book.create([
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:1, idAuthor:1, nameBook:"Test book1", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 3, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:2, idAuthor:2, nameBook:"Test book2", bookLocation:"1-25-35", status: 3, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:3, idAuthor:3, nameBook:"Test book3", bookLocation:"1-25-35", status: 3, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:3, idAuthor:3, nameBook:"Test book3", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:4, idAuthor:4, nameBook:"Test book4", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:4, idAuthor:4, nameBook:"Test book4", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:4, idAuthor:4, nameBook:"Test book4", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:4, idAuthor:4, nameBook:"Test book4", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:4, idAuthor:4, nameBook:"Test book4", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:4, idAuthor:4, nameBook:"Test book4", bookLocation:"1-25-35", status: 3, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:5, idAuthor:5, nameBook:"Test book5", bookLocation:"1-25-35", status: 2, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:6, idAuthor:6, nameBook:"Test book6", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:7, idAuthor:7, nameBook:"Test book7", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:7, idAuthor:7, nameBook:"Test book7", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:7, idAuthor:7, nameBook:"Test book7", bookLocation:"1-25-35", status: 3, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" },
-  {idBook:7, idAuthor:7, nameBook:"Test book7", bookLocation:"1-25-35", status: 1, createDate:DateTime.strptime("08/07/2022 8:00", "%m/%d/%Y %H:%M"), createBy:"test_username" }
+  {id:1, authors_id:1, name:"Test book1", location:"1-25-35", status_id:1},
+  {id:2, authors_id:1, name:"Test book1", location:"1-25-35", status_id:1},
+  {id:3, authors_id:1, name:"Test book1", location:"1-25-35", status_id:1},
+  {id:4, authors_id:1, name:"Test book1", location:"1-25-35", status_id:1},
+  {id:5, authors_id:1, name:"Test book1", location:"1-25-35", status_id:2},
+  {id:6, authors_id:1, name:"Test book1", location:"1-25-35", status_id:2},
+  {id:7, authors_id:1, name:"Test book1", location:"1-25-35", status_id:2},
+  {id:8, authors_id:1, name:"Test book1", location:"1-25-35", status_id:2},
+  {id:9, authors_id:2, name:"Test book2", location:"1-25-35", status_id:1},
+  {id:10, authors_id:2, name:"Test book2", location:"1-25-35", status_id:1},
+  {id:11, authors_id:2, name:"Test book2", location:"1-25-35", status_id:1},
+  {id:12, authors_id:2, name:"Test book2", location:"1-25-35", status_id:2},
+  {id:13, authors_id:2, name:"Test book2", location:"1-25-35", status_id:2},
+  {id:14, authors_id:2, name:"Test book2", location:"1-25-35", status_id:1},
+  {id:15, authors_id:2, name:"Test book2", location:"1-25-35", status_id:3},
+  {id:17, authors_id:2, name:"Test book2", location:"1-25-35", status_id:3},
+  {id:18, authors_id:3, name:"Test book3", location:"1-25-35", status_id:3},
+  {id:19, authors_id:3, name:"Test book3", location:"1-25-35", status_id:1},
+  {id:20, authors_id:4, name:"Test book4", location:"1-25-35", status_id:1},
+  {id:21, authors_id:4, name:"Test book4", location:"1-25-35", status_id:2},
+  {id:22, authors_id:4, name:"Test book4", location:"1-25-35", status_id:1},
+  {id:23, authors_id:4, name:"Test book4", location:"1-25-35", status_id:1},
+  {id:24, authors_id:4, name:"Test book4", location:"1-25-35", status_id:1},
+  {id:25, authors_id:4, name:"Test book4", location:"1-25-35", status_id:3},
+  {id:26, authors_id:5, name:"Test book5", location:"1-25-35", status_id:2},
+  {id:27, authors_id:6, name:"Test book6", location:"1-25-35", status_id:1},
+  {id:28, authors_id:7, name:"Test book7", location:"1-25-35", status_id:1},
+  {id:29, authors_id:7, name:"Test book7", location:"1-25-35", status_id:1},
+  {id:30, authors_id:7, name:"Test book7", location:"1-25-35", status_id:3},
+  {id:31, authors_id:7, name:"Test book7", location:"1-25-35", status_id:1}
 ])

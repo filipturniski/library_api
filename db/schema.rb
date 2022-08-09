@@ -12,29 +12,22 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_08_08_170011) do
   create_table "authors", force: :cascade do |t|
-    t.integer "idAuthor"
-    t.string "nameAuthor"
-    t.integer "status"
-    t.date "createDate"
-    t.string "createBy"
-    t.date "modifyDate"
-    t.string "modifyBy"
+    t.string "name_author", null: false
+    t.integer "status_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status_id"], name: "index_authors_on_status_id"
   end
 
   create_table "books", force: :cascade do |t|
-    t.integer "idBook"
-    t.integer "idAuthor"
-    t.string "nameBook"
-    t.string "bookLocation"
-    t.integer "status"
-    t.date "createDate"
-    t.string "createBy"
-    t.date "modifyDate"
-    t.string "modifyBy"
+    t.string "name", null: false
+    t.string "location"
+    t.integer "status_id", default: 1
+    t.integer "authors_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["authors_id"], name: "index_books_on_authors_id"
+    t.index ["status_id"], name: "index_books_on_status_id"
   end
 
   create_table "loans", force: :cascade do |t|
@@ -66,10 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_170011) do
   end
 
   create_table "statuses", force: :cascade do |t|
-    t.integer "idStatus"
-    t.string "descriptionStatus"
+    t.string "descriptionStatus", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "authors", "statuses"
+  add_foreign_key "books", "authors", column: "authors_id"
+  add_foreign_key "books", "statuses"
 end

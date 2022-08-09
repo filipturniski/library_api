@@ -4,13 +4,13 @@ class CreateBookView < ActiveRecord::Migration[7.0]
       dir.up do
         execute <<-SQL
           CREATE VIEW Book_views AS
-            select b.nameBook ,
-            a.nameAuthor ,
-            count(b.idBook) as numberOfCopies
+            select b.name ,
+            a.name_author ,
+            count(b.id) as numberOfCopies
            from authors a
-          JOIN books b ON  b.idAuthor = a.idAuthor
-          GROUP BY  b.nameBook ,
-           a.nameAuthor;
+          JOIN books b ON  b.authors_id = a.id
+          GROUP BY  b.name ,
+           a.name_author;
         SQL
       end
 
