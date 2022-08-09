@@ -1,16 +1,15 @@
 module Api
   module V1
     module Management
-      class BookController < ApplicationController
+      class LoanController < ApplicationController
         def index
-          book = Book.order('name ASC')
+          book = BookFreeView.select('name', 'name_author', 'numberOfCopies').order('name ASC')
           render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
         end
 
         def search
-          book = Book.where(" upper(name) like upper(?) or authors_id in (select id from authors where upper(name_author) like upper(?))
-                and status_id <> 3", "%#{params[:bookName]}%", "%#{params[:bookName]}%").order('name ASC')
-          #book = book.search(params[:bookName])
+          book = BookFreeView.select('name', 'name_author', 'numberOfCopies').order('name ASC')
+          book = book.search(params[:bookName])
           render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
         end
 
@@ -61,3 +60,4 @@ module Api
     end
   end
 end
+
