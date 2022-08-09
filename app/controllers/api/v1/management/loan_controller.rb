@@ -31,27 +31,29 @@ module Api
         end
 
         def destroy
-          updateLoanTable(params, 'Deleted Loan', 'Not Deleted Loan', status_id: 5)
+          loams = Loan.find(params[:id])
+          if loams.update(status_id: 5)
+            render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :ok
+          else
+            render json: { status: 'ERROR', message: 'Author not saved', data: loams.errors },
+                   status: :unprocessable_entity
+          end
         end
 
         def update
-          updateLoanTable(params, 'Loan updated', 'Loan not updated', loan_params)
+          loams = Loan.find(params[:id])
+          if loams.update(loan_params)
+            render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :ok
+          else
+            render json: { status: 'ERROR', message: 'Author not saved', data: loams.errors },
+                   status: :unprocessable_entity
+          end
         end
 
         private
 
         def loan_params
           params.permit(:status_id)
-        end
-
-        def updateLoanTable(params, message, errorMessage,updateValue) #TODO check if there is change
-          loan = Loan.find(params[:id]).update(updateValue)
-          if loan.presence
-            render json: { status: 'SUCCESS', message: message, data: loan }, status: :ok
-          else #TODO error hendeling
-            render json: { status: 'ERROR', message: errorMessage, data: loan },
-                   status: :unprocessable_entity
-          end
         end
 
       end

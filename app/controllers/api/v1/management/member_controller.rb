@@ -4,12 +4,7 @@ module Api
       class MemberController < ApplicationController
         def index
           member = Member.order('username ASC')
-          render json: { status: 'SUCCESS', message: 'Loaded Memebers', data: member }, status: :ok
-        end
-
-        def search
-          member = Member.order('username ASC')
-          member = member.search(params[:user_name])
+          member = member.search(params[:user_name]) if params[:user_name].present?
           render json: { status: 'SUCCESS', message: 'Loaded Memebers', data: member }, status: :ok
         end
 
@@ -24,36 +19,29 @@ module Api
         end
 
         def destroy
-          updateMemberTable(params, 'Deleted Member', 'Not Deleted Member', status_id: 5)
+          member = Member.find(params[:id])
+          if member.update(status_id: 5)
+            render json: { status: 'SUCCESS', message: 'Author saved', data: member }, status: :ok
+          else
+            render json: { status: 'ERROR', message: 'Author not saved', data: member.errors },
+                   status: :unprocessable_entity
+          end
         end
 
         def update
-          updateMemberTable(params, 'Member updated', 'Member not updated', member_params)
+          member = Member.find(params[:id])
+          if member.update(member_params)
+            render json: { status: 'SUCCESS', message: 'Author saved', data: member }, status: :ok
+          else
+            render json: { status: 'ERROR', message: 'Author not saved', data: member.errors },
+                   status: :unprocessable_entity
+          end
         end
 
         private
 
         def member_params
           params.permit(:first_name, :last_name, :username, :email, :phone_number)
-        end
-
-        def updateMemberTable(params, message, errorMessage, updateValue)#TODO check if there is change
-          if params[:id].to_i != 0
-            member = Member.searchActiveMemeberId(params[:id]).update(updateValue)
-            ifUpdatedMemberTable(member, message, errorMessage)
-          else
-            member = Member.searchActiveMemebername(params[:id])
-            ifUpdatedMemberTable(member, message, errorMessage)
-          end
-        end
-
-        def ifUpdatedMemberTable(member, message, errorMessage)
-          if member.presence
-            render json: { status: 'SUCCESS', message: message, data: member }, status: :ok
-          else #TODO error hendeling
-            render json: { status: 'ERROR', message: errorMessage, data: member },
-                   status: :unprocessable_entity
-          end
         end
 
       end

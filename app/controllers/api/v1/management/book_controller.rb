@@ -4,11 +4,7 @@ module Api
       class BookController < ApplicationController
         def index
           book = Book.order('name ASC')
-          render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
-        end
-
-        def search
-          book = Book.search(params[:bookName]).order('name ASC')
+          book = book.search(params[:bookName]).order('name ASC') if params[:bookName].present?
           render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
         end
 
@@ -23,36 +19,29 @@ module Api
         end
 
         def destroy
-          updateBookTable(params, 'Deleted Book', 'Not Deleted Book', status_id: 5)
+          book = Book.find(params[:id])
+          if book.update(status_id: 5)
+            render json: { status: 'SUCCESS', message: 'Author saved', data: book }, status: :ok
+          else
+            render json: { status: 'ERROR', message: 'Author not saved', data: book.errors },
+                   status: :unprocessable_entity
+          end
         end
 
         def update
-          updateBookTable(params, 'Book updated', 'Book not updated', book_params)
+          book = Book.find(params[:id])
+          if book.update(params.permit)
+            render json: { status: 'SUCCESS', message: 'Author saved', data:book }, status: :ok
+          else
+            render json: { status: 'ERROR', message: 'Author not saved', data:book.errors },
+                   status: :unprocessable_entity
+          end
         end
 
         private
 
         def book_params
           params.permit(:name, :location, :status_id, :authors_id)
-        end
-
-        def updateBookTable(params, message, errorMessage, updateValue)#TODO check if there is change
-          if params[:id].to_i != 0
-            book = Book.searchActiveBookId(params[:id]).update(updateValue)
-            ifUpdatedBookTable(book, message, errorMessage)
-          else
-            book = Book.searchActiveBookName(params[:id])
-            ifUpdatedBookTable(book, message, errorMessage)
-          end
-        end
-
-        def ifUpdatedBookTable(book, message, errorMessage)
-          if book.presence
-            render json: { status: 'SUCCESS', message: message, data: book }, status: :ok
-          else #TODO error hendeling
-            render json: { status: 'ERROR', message: errorMessage, data: book },
-                   status: :unprocessable_entity
-          end
         end
 
       end
