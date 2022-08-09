@@ -24,6 +24,11 @@ Rails.application.routes.draw do
                 get :search
               end
             end
+            resources :member,  only: [ :search, :create, :index, :create, :destroy, :update] do
+              collection do
+                get :search
+              end
+            end
           end
         end
     end

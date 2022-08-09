@@ -54,3 +54,11 @@ Book.create([
   {id:30, authors_id:7, name:"Test book7", location:"1-25-35", status_id:3},
   {id:31, authors_id:7, name:"Test book7", location:"1-25-35", status_id:1}
 ])
+
+Member.destroy_all
+Member.create([
+              {id:1, first_name:'pero', last_name:"peric", username:"ppseric", status_id:1},
+              {id:2, first_name:'šetf', last_name:"peric", username:"šperic", status_id:1},
+              {id:3, first_name:'pero', last_name:"štefić", username:"pštevic", status_id:1},
+              {id:4, first_name:'joža', last_name:"peric", username:"jpseric", status_id:1}
+            ])

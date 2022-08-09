@@ -43,19 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.string "idMember"
-    t.string "firstName"
-    t.string "lastName"
-    t.string "username"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "username", null: false
     t.string "email"
-    t.integer "phoneNumber"
-    t.integer "status"
-    t.date "createDate"
-    t.string "createBy"
-    t.date "modifyDate"
-    t.string "modifyBy"
+    t.integer "phone_number"
+    t.integer "status_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status_id"], name: "index_members_on_status_id"
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -67,4 +63,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   add_foreign_key "authors", "statuses"
   add_foreign_key "books", "authors", column: "authors_id"
   add_foreign_key "books", "statuses"
+  add_foreign_key "members", "statuses"
 end
