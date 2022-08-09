@@ -1,7 +1,5 @@
 class Loan < ApplicationRecord
-  validates :idMember, presence: true
-  validates :idBook, presence: true
-  validates :status, presence: true
-  validates :createDate, presence: true
-  validates :createBy, presence: true
+  def self.search(searchMember)
+    where(" member_id = ? and status_id <> 5", "#{searchMember}")
+  end
 end
