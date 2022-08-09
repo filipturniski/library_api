@@ -25,11 +25,39 @@ module Api
           end
         end
 
+        def destroy
+          updateBookTable(params, 'Deleted Book', 'Not Deleted Book', status_id: 4)
+        end
+
+        def update
+          updateBookTable(params, 'Book updated', 'Book not updated', book_params)
+        end
+
         private
 
         def book_params
           params.permit(:name, :location, :status_id, :authors_id)
         end
+
+        def updateBookTable(params, message, errorMessage, updateValue)
+          if params[:id].to_i != 0
+            book = Book.where(" id is ?", params[:id]).update(updateValue)
+            ifUpdatedBookTable(book, message, errorMessage)
+          else
+            book = Book.where(" name is ?", params[:id])
+            ifUpdatedBookTable(book, message, errorMessage)
+          end
+        end
+
+        def ifUpdatedBookTable(book, message, errorMessage)
+          if book.presence
+            render json: { status: 'SUCCESS', message: message, data: book }, status: :ok
+          else #TODO error hendeling
+            render json: { status: 'ERROR', message: errorMessage, data: book },
+                   status: :unprocessable_entity
+          end
+        end
+
       end
     end
   end
