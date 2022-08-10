@@ -6,7 +6,7 @@ module Api
 
         def index
           book = Book.active().order('name ASC')
-          book = book.search(params[:bookName]).order('name ASC') if params[:bookName].present?
+          book = book.search(params[:bookName], params[:authorName]).order('name ASC') if params[:bookName].present? or params[:authorName].present?
           render json: { status: 'SUCCESS', message: 'Loaded Books', data: book }, status: :ok
         end
 

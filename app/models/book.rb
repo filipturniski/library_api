@@ -11,9 +11,9 @@ class Book < ApplicationRecord
     where("status_id  <> 5")
   end
 
-  def self.search(bookName)
-    where(" upper(name) like upper(?) or author_id in (select id from authors where upper(name_author) like upper(?))
-                and status_id  <> 5", "%#{bookName}%", "%#{bookName}%")
+  def self.search(bookName,authorName)
+    where(" upper(name) like upper(?) and  ? <>'%%' or author_id in (select id from authors where upper(name_author) like upper(?) and ? <> '%%')
+                and status_id  <> 5", "%#{bookName}%","%#{bookName}%", "%#{authorName}%", "%#{authorName}%")
   end
 
   def self.searchActiveBookId(searchId)
