@@ -5,13 +5,14 @@ module Api
         before_action :checkIfAdmin
 
         def index
-          author = Author.order('name_Author ASC').order('name_author ASC')
+          author = Author.active().order('name_Author ASC').order('name_author ASC')
           author = author.search(params[:authorName]) if params[:authorName].present?
           render json: { status: 'SUCCESS', message: 'Loaded author', data: author }, status: :ok
         end
 
         def create
           params[:creator_id] = params[:user_id_auth]
+          params[:updater_id] = params[:user_id_auth]
           author = Author.new(author_params_create)
           if author.save
             render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :created
@@ -22,22 +23,27 @@ module Api
         end
 
         def destroy
-          author = Author.find(params[:id])
-          if author.update({status_id: 5, updater_id: params[:user_id_auth]})
-            render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :accepted
+          author = Author.searchActiveAuthorsId(params[:id]).update({status_id: 5, updater_id: params[:user_id_auth]})
+          if author.empty?
+            render json: { status: 'ERROR', message: 'wrong Author id', data: author }, status: :unprocessable_entity
+          elsif author
+            render json: { status: 'SUCCESS', message: 'Author destroyed', data: author }, status: :accepted
           else
-            render json: { status: 'ERROR', message: 'Author not saved', data: author.errors },
+            render json: { status: 'ERROR', message: 'Author not destroyed', data: author.errors },
                    status: :unprocessable_entity
           end
         end
 
         def update
-          author = Author.find(params[:id])
           params[:updater_id] = params[:user_id_auth]
-          if author.update(author_params_update)
-            render json: { status: 'SUCCESS', message: 'Author saved', data:author }, status: :accepted
+          author = Author.searchActiveAuthorsId(params[:id]).update(author_params_update)
+
+          if author.empty?
+            render json: { status: 'ERROR', message: 'wrong Author id', data: author }, status: :unprocessable_entity
+          elsif author
+            render json: { status: 'SUCCESS', message: 'Author updated', data:author }, status: :accepted
           else
-            render json: { status: 'ERROR', message: 'Author not saved', data:author.errors },
+            render json: { status: 'ERROR', message: 'Author not updated', data:author.errors },
                    status: :unprocessable_entity
           end
         end
@@ -45,7 +51,7 @@ module Api
         private
 
         def author_params_create
-          params.permit(:name_author, :status_id, :creator_id)
+          params.permit(:name_author, :status_id, :creator_id, :updater_id)
         end
 
         def author_params_update
