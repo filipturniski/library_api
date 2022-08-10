@@ -11,7 +11,7 @@ module Api
         def create
           member = User.new(member_params)
           if member.save
-            render json: { status: 'SUCCESS', message: 'User saved', data: member }, status: :ok
+            render json: { status: 'SUCCESS', message: 'User saved', data: member }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'User not saved', data: member.errors },
                    status: :unprocessable_entity
@@ -21,7 +21,7 @@ module Api
         def destroy
           member = User.find(params[:id])
           if member.update(status_id: 5)
-            render json: { status: 'SUCCESS', message: 'Author saved', data: member }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: member }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: member.errors },
                    status: :unprocessable_entity
@@ -31,7 +31,7 @@ module Api
         def update
           member = User.find(params[:id])
           if member.update(member_params)
-            render json: { status: 'SUCCESS', message: 'Author saved', data: member }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: member }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: member.errors },
                    status: :unprocessable_entity

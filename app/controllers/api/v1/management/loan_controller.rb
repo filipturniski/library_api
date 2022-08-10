@@ -13,7 +13,7 @@ module Api
             if Loan.searchActiveMemeberLoans(params[:member_id]).count <3
               loan = Loan.new({"member_id": 1, "book_id": availableBooks.book_id, "status_id": 3})
               if loan.save
-                render json: { status: 'SUCCESS', message: 'Loan created', data: loan }, status: :ok
+                render json: { status: 'SUCCESS', message: 'Loan created', data: loan }, status: :created
               else
                 render json: { status: 'ERROR', message: 'Loan not created', data: loan.errors },
                        status: :unprocessable_entity
@@ -33,7 +33,7 @@ module Api
         def destroy
           loams = Loan.find(params[:id])
           if loams.update(status_id: 5)
-            render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: loams.errors },
                    status: :unprocessable_entity
@@ -43,7 +43,7 @@ module Api
         def update
           loams = Loan.find(params[:id])
           if loams.update(loan_params)
-            render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: loams.errors },
                    status: :unprocessable_entity

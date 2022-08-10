@@ -11,7 +11,7 @@ module Api
         def create
           book = Book.new(book_params)
           if book.save
-            render json: { status: 'SUCCESS', message: 'Book saved', data: book }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Book saved', data: book }, status: :created
           else
             render json: { status: 'ERROR', message: 'Book not saved', data: book.errors },
                    status: :unprocessable_entity
@@ -21,7 +21,7 @@ module Api
         def destroy
           book = Book.find(params[:id])
           if book.update(status_id: 5)
-            render json: { status: 'SUCCESS', message: 'Author saved', data: book }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: book }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: book.errors },
                    status: :unprocessable_entity
@@ -31,7 +31,7 @@ module Api
         def update
           book = Book.find(params[:id])
           if book.update(params.permit)
-            render json: { status: 'SUCCESS', message: 'Author saved', data:book }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data:book }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data:book.errors },
                    status: :unprocessable_entity

@@ -13,7 +13,7 @@ module Api
           params[:creator_id] = params[:user_id]
           author = Author.new(author_params_create)
           if author.save
-            render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :created
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: author.errors },
                    status: :unprocessable_entity
@@ -23,7 +23,7 @@ module Api
         def destroy
           author = Author.find(params[:id])
           if author.update({status_id: 5, updater_id: params[:user_id]})
-            render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: author.errors },
                    status: :unprocessable_entity
@@ -34,7 +34,7 @@ module Api
           author = Author.find(params[:id])
           params[:updater_id] = params[:user_id]
           if author.update(author_params_update)
-            render json: { status: 'SUCCESS', message: 'Author saved', data:author }, status: :ok
+            render json: { status: 'SUCCESS', message: 'Author saved', data:author }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data:author.errors },
                    status: :unprocessable_entity
