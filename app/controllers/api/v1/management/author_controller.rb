@@ -2,6 +2,7 @@ module Api
   module V1
     module Management
       class AuthorController < ApplicationController
+        before_action :checkIfAdmin
         def index
           author = Author.order('name_Author ASC').order('name_author ASC')
           author = author.search(params[:authorName]) if params[:authorName].present?
@@ -48,6 +49,11 @@ module Api
 
         def author_params_update
           params.permit(:name_author, :status_id, :updater_id)
+        end
+        def checkIfAdmin
+          if params[:is_admin] != 1
+            render json: {message: 'You are not admin'}, status: 401
+          end
         end
 
       end
