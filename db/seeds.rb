@@ -66,10 +66,10 @@ Book.create([
 
 
 Member.create([
-              {id:1, first_name:'pero', last_name:"peric", username:"ppseric", status_id:1},
-              {id:2, first_name:'šetf', last_name:"peric", username:"šperic", status_id:1},
-              {id:3, first_name:'pero', last_name:"štefić", username:"pštevic", status_id:1},
-              {id:4, first_name:'joža', last_name:"peric", username:"jpseric", status_id:1}
+              {id:1, first_name:'pero', last_name:"peric", username:"ppseric", status_id:1, password_ciphertext:"12345678"},
+              {id:2, first_name:'šetf', last_name:"peric", username:"šperic", status_id:1, password_ciphertext:"12345678"},
+              {id:3, first_name:'pero', last_name:"štefić", username:"pštevic", status_id:1, password_ciphertext:"12345678"},
+              {id:4, first_name:'joža', last_name:"peric", username:"jpseric", status_id:1, password_ciphertext:"12345678"}
             ])
 
 Loan.create([

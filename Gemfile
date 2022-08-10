@@ -48,3 +48,7 @@ group :development do
   # gem "spring"
 end
 
+
+gem "lockbox", "~> 1.0"
+
+gem "blind_index", "~> 2.3"

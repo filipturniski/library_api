@@ -20,11 +20,7 @@ Rails.application.routes.draw do
             resources :loan,  only: [ :create, :index, :destroy, :update]
           end
           namespace 'dashboard' do
-            resources :loan  do
-              collection do
-                get :search
-              end
-            end
+            resources :loan,  only: [ :index]
           end
         end
     end
