@@ -1,14 +1,14 @@
 # README
 
-+postavljanje okoline 2022.08.08 11:00-14:20
-+kreiranje baze po uzoru na Data model.xlsx 2022.08.08 14:20-21:52
-+Public catalog 2022.08.08 21:52-2022.08.08 23:43, 2022.08.08 07:45 - 2022.08.08 09:10
-	+kreiranje pretraživanje svih krinjga
+* postavljanje okoline 2022.08.08 11:00-14:20
+* kreiranje baze po uzoru na Data model.xlsx 2022.08.08 14:20-21:52
+* Public catalog 2022.08.08 21:52-2022.08.08 23:43, 2022.08.08 07:45 - 2022.08.08 09:10
+	* kreiranje pretraživanje svih krinjga
 	kreiranje pretraživanje samo slobodnih knjiga
-	+kreiranje rpetraživanje autora
+	* kreiranje rpetraživanje autora
 
 Library management system 2022.08.08 09:10 - 2022.08.08 18:10
-	+provjera dostupnih knjiga i autora
+	* provjera dostupnih knjiga i autora
 	
 	+pretraživanje po nazivu knjige, ili nazivu autora
 	+dodavanje nove knjige
