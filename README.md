@@ -39,5 +39,6 @@
 -   test user API-s
 -   test book API-s
 -   test loans API-s
+-	log every action in log_table
 
 ## Database Model
