@@ -1,0 +1,4 @@
+active_record_encryption:
+  primary_key: qeQXC8U5yzrBi3ITRaSyldvkKTtYyWQM
+  deterministic_key: VNb6UxsnP38ZXG6yk7TN2XB9RroMEDeG
+  key_derivation_salt: V0nPVjgHrUcjn0bzttQVNKQK2ZZX5poN

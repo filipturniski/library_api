@@ -1,3 +1,3 @@
 class Status < ApplicationRecord
-  validates :descriptionStatus, presence: true
+  validates :description_status, presence: true
 end
