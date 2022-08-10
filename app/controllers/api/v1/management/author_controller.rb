@@ -3,6 +3,7 @@ module Api
     module Management
       class AuthorController < ApplicationController
         before_action :checkIfAdmin
+
         def index
           author = Author.order('name_Author ASC').order('name_author ASC')
           author = author.search(params[:authorName]) if params[:authorName].present?
@@ -10,7 +11,7 @@ module Api
         end
 
         def create
-          params[:creator_id] = params[:user_id]
+          params[:creator_id] = params[:user_id_auth]
           author = Author.new(author_params_create)
           if author.save
             render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :created
@@ -22,7 +23,7 @@ module Api
 
         def destroy
           author = Author.find(params[:id])
-          if author.update({status_id: 5, updater_id: params[:user_id]})
+          if author.update({status_id: 5, updater_id: params[:user_id_auth]})
             render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: author.errors },
@@ -32,7 +33,7 @@ module Api
 
         def update
           author = Author.find(params[:id])
-          params[:updater_id] = params[:user_id]
+          params[:updater_id] = params[:user_id_auth]
           if author.update(author_params_update)
             render json: { status: 'SUCCESS', message: 'Author saved', data:author }, status: :accepted
           else
@@ -50,11 +51,7 @@ module Api
         def author_params_update
           params.permit(:name_author, :status_id, :updater_id)
         end
-        def checkIfAdmin
-          if params[:is_admin] != 1
-            render json: {message: 'You are not admin'}, status: 401
-          end
-        end
+
 
       end
     end

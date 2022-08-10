@@ -14,8 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_133802) do
   create_table "authors", force: :cascade do |t|
     t.string "name_author", null: false
     t.integer "status_id", default: 1, null: false
-    t.integer "creator_id"
-    t.integer "updater_id"
+    t.integer "creator_id", null: false
+    t.integer "updater_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_authors_on_creator_id"
@@ -28,26 +28,34 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_133802) do
     t.string "location"
     t.integer "status_id", default: 1, null: false
     t.integer "author_id", null: false
+    t.integer "creator_id", null: false
+    t.integer "updater_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["creator_id"], name: "index_books_on_creator_id"
     t.index ["name"], name: "index_books_on_name"
     t.index ["status_id"], name: "index_books_on_status_id"
+    t.index ["updater_id"], name: "index_books_on_updater_id"
   end
 
   create_table "loans", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "book_id", null: false
     t.integer "status_id", default: 3, null: false
+    t.integer "creator_id", null: false
+    t.integer "updater_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_loans_on_book_id"
+    t.index ["creator_id"], name: "index_loans_on_creator_id"
     t.index ["status_id"], name: "index_loans_on_status_id"
+    t.index ["updater_id"], name: "index_loans_on_updater_id"
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "statuses", force: :cascade do |t|
-    t.string "descriptionStatus", null: false
+    t.string "description_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,16 +69,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_133802) do
     t.integer "is_admin", default: 0, null: false
     t.integer "status_id", default: 1, null: false
     t.string "password_ciphertext"
+    t.integer "creator_id", null: false
+    t.integer "updater_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_users_on_creator_id"
     t.index ["status_id"], name: "index_users_on_status_id"
+    t.index ["updater_id"], name: "index_users_on_updater_id"
   end
 
   add_foreign_key "authors", "statuses"
+  add_foreign_key "authors", "users", column: "creator_id"
+  add_foreign_key "authors", "users", column: "updater_id"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "statuses"
+  add_foreign_key "books", "users", column: "creator_id"
+  add_foreign_key "books", "users", column: "updater_id"
   add_foreign_key "loans", "books"
   add_foreign_key "loans", "statuses"
   add_foreign_key "loans", "users"
+  add_foreign_key "loans", "users", column: "creator_id"
+  add_foreign_key "loans", "users", column: "updater_id"
   add_foreign_key "users", "statuses"
+  add_foreign_key "users", "users", column: "creator_id"
+  add_foreign_key "users", "users", column: "updater_id"
 end

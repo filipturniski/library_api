@@ -16,7 +16,7 @@ Rails.application.routes.draw do
           namespace 'management' do
             resources :book,  only: [ :create, :index, :destroy, :update]
             resources :author,  only: [ :create, :index, :destroy, :update]
-            resources :member,  only: [ :create, :index, :destroy, :update]
+            resources :user,  only: [ :create, :index, :destroy, :update]
             resources :loan,  only: [ :create, :index, :destroy, :update]
           end
           namespace 'dashboard' do

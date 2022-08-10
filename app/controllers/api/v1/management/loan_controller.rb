@@ -2,16 +2,20 @@ module Api
   module V1
     module Management
       class LoanController < ApplicationController
+        before_action :checkIfAdmin
+
         def index
           loan = Loan.order('id ASC')
           render json: { status: 'SUCCESS', message: 'Loaded Loans', data: loan }, status: :ok
         end
 
         def create
+          params[:creator_id] = params[:user_id_auth]
           availableBooks = BookFreeView.search( params[:book_name], params[:author_id]).first
           if availableBooks.present?
             if Loan.searchActiveMemeberLoans(params[:member_id]).count <3
-              loan = Loan.new({"member_id": 1, "book_id": availableBooks.book_id, "status_id": 3})
+              params[:status_id] = 3
+              loan = Loan.new(loan_params_create)
               if loan.save
                 render json: { status: 'SUCCESS', message: 'Loan created', data: loan }, status: :created
               else
@@ -32,7 +36,7 @@ module Api
 
         def destroy
           loams = Loan.find(params[:id])
-          if loams.update(status_id: 5)
+          if loams.update({status_id: 5, updater_id: params[:user_id_auth]})
             render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: loams.errors },
@@ -42,7 +46,8 @@ module Api
 
         def update
           loams = Loan.find(params[:id])
-          if loams.update(loan_params)
+          params[:updater_id] = params[:user_id_auth]
+          if loams.update(loan_params_update)
             render json: { status: 'SUCCESS', message: 'Author saved', data: loams }, status: :accepted
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: loams.errors },
@@ -52,8 +57,12 @@ module Api
 
         private
 
-        def loan_params
-          params.permit(:status_id)
+        def loan_params_create
+          params.permit(:user_id, book_id, status_id: creator_id)
+        end
+
+        def loan_params_update
+          params.permit(:user_id, book_id, status_id: updater_id)
         end
 
       end

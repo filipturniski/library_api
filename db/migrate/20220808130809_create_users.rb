@@ -10,8 +10,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.belongs_to :status, default: 1, index: true, foreign_key: true, null: false
       t.string :password_ciphertext
 
-      #t.belongs_to :creator, index: true, foreign_key: true
-      #t.belongs_to :updater, index: true, foreign_key: true
+      t.belongs_to :creator, null: false
+      t.belongs_to :updater, null: false
 
       t.timestamps
     end
