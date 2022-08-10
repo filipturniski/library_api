@@ -4,7 +4,7 @@ module Api
       class BookController < ActionController::API
 
         def index
-          books = BookView.select('name', 'name_Author').order('name ASC')
+          books = BookView.order('name ASC')
           books = books.search(params[:bookName]) if params[:bookName].present?
           render json: {status: 'SUCCESS', message: 'Loaded Books', data:books}, status: :ok
         end
