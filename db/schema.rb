@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["name"], name: "index_books_on_name"
     t.index ["status_id"], name: "index_books_on_status_id"
   end
 

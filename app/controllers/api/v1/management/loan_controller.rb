@@ -8,7 +8,7 @@ module Api
         end
 
         def create
-          availableBooks = BookFreeView.search( params[:book_name]).first
+          availableBooks = BookFreeView.search( params[:book_name], params[:author_id]).first
           if availableBooks.present?
             if Loan.searchActiveMemeberLoans(params[:member_id]).count <3
               loan = Loan.new({"member_id": 1, "book_id": availableBooks.book_id, "status_id": 3})

@@ -8,7 +8,7 @@ class Book < ApplicationRecord
   #belongs_to   :updater
 
   def self.search(bookName)
-    where(" upper(name) like upper(?) or authors_id in (select id from authors where upper(name_author) like upper(?))
+    where(" upper(name) like upper(?) or author_id in (select id from authors where upper(name_author) like upper(?))
                 and status_id = 1", "%#{bookName}%", "%#{bookName}%")
   end
 
