@@ -10,7 +10,7 @@ class CreateBookView < ActiveRecord::Migration[7.0]
             sum(fbw.status_id = 4 or fbw.status_id is null)   as numberOfFreeCopies,
             count(b.id) as numberOfCopies
              from authors a
-            JOIN books b ON  b.authors_id = a.id
+            JOIN books b ON  b.author_id = a.id
             left JOIN book_free_views fbw ON  fbw.book_id = b.id
             where b.status_id = 1
               and a.status_id = 1

@@ -1,7 +1,7 @@
 module Api
   module V1
     module Dashboard
-      class LoansController < ApplicationController
+      class LoanController < ApplicationController
 
         def search
 

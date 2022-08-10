@@ -1,7 +1,7 @@
 module Api
   module V1
     module Catalog
-      class BooksController < ApplicationController
+      class BookController < ApplicationController
 
         def index
           books = BookView.select('name', 'name_Author').order('name ASC')

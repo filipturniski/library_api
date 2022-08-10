@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   namespace 'api' do
       namespace 'v1' do
           namespace 'catalog' do
-            resources :books,  only: [ :index] do
+            resources :book,  only: [ :index] do
               collection do
                 get :search
               end
             end
-            resources :authors,  only: [ :index] do
+            resources :author,  only: [ :index] do
               collection do
                 get :search
               end
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
             resources :loan,  only: [ :create, :index, :destroy, :update]
           end
           namespace 'dashboard' do
-            resources :loans  do
+            resources :loan  do
               collection do
                 get :search
               end
