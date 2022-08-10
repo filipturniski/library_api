@@ -14,9 +14,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
   create_table "authors", force: :cascade do |t|
     t.string "name_author", null: false
     t.integer "status_id", default: 1, null: false
+    t.integer "creator_id"
+    t.integer "updater_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_authors_on_creator_id"
     t.index ["status_id"], name: "index_authors_on_status_id"
+    t.index ["updater_id"], name: "index_authors_on_updater_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -54,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_073343) do
     t.string "username", null: false
     t.string "email"
     t.integer "phone_number"
-    t.integer "is_number", default: 0, null: false
+    t.integer "is_admin", default: 0, null: false
     t.integer "status_id", default: 1, null: false
     t.string "password_ciphertext"
     t.datetime "created_at", null: false

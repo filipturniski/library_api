@@ -9,7 +9,8 @@ module Api
         end
 
         def create
-          author = Author.new(author_params)
+          params[:creator_id] = params[:user_id]
+          author = Author.new(author_params_create)
           if author.save
             render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :ok
           else
@@ -20,7 +21,7 @@ module Api
 
         def destroy
           author = Author.find(params[:id])
-          if author.update(status_id: 5)
+          if author.update({status_id: 5, updater_id: params[:user_id]})
             render json: { status: 'SUCCESS', message: 'Author saved', data: author }, status: :ok
           else
             render json: { status: 'ERROR', message: 'Author not saved', data: author.errors },
@@ -30,7 +31,8 @@ module Api
 
         def update
           author = Author.find(params[:id])
-          if author.update(params.permit)
+          params[:updater_id] = params[:user_id]
+          if author.update(author_params_update)
             render json: { status: 'SUCCESS', message: 'Author saved', data:author }, status: :ok
           else
             render json: { status: 'ERROR', message: 'Author not saved', data:author.errors },
@@ -40,8 +42,12 @@ module Api
 
         private
 
-        def author_params
-          params.permit(:name_author, :status_id)
+        def author_params_create
+          params.permit(:name_author, :status_id, :creator_id)
+        end
+
+        def author_params_update
+          params.permit(:name_author, :status_id, :updater_id)
         end
 
       end

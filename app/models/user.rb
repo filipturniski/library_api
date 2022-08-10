@@ -2,6 +2,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :username, presence: true
+  validates :is_admin, presence: true
   belongs_to :status
   #belongs_to :creator
   #belongs_to :updater
