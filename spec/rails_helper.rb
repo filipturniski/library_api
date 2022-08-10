@@ -38,8 +38,9 @@ RSpec.configure do |config|
 
 
   config.before(:suite) do
-    ActiveRecord::Migration.maintain_test_schema!
-    Rails.application.load_seed # loading seeds
+
+    #ActiveRecord::Migration.maintain_test_schema!
+    #Rails.application.load_seed # loading seeds
   end
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

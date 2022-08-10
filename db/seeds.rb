@@ -6,10 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+
 Loan.destroy_all
-User.destroy_all
 Book.destroy_all
 Author.destroy_all
+User.destroy_all
 Status.destroy_all
 
 
@@ -23,7 +24,7 @@ Status.create([
 User.create([
               {id:1, first_name:'pero', last_name:"peric", username:"ppseric", status_id:1, password_ciphertext:"12345678", is_admin: "1", creator_id: 1, updater_id:1},
               {id:2, first_name:'šetf', last_name:"peric", username:"šperic", status_id:1, password_ciphertext:"12345678", creator_id: 1, updater_id:1},
-              {id:3, first_name:'pero', last_name:"štefić", username:"pštevic", status_id:1, password_ciphertext:"12345678", creator_id: 1, updater_id:1},
+              {id:3, first_name:'pero', last_name:"štefić", username:"pštevic", status_id:1, password_ciphertext:"12345678", is_admin: "1",creator_id: 1, updater_id:1},
               {id:4, first_name:'joža', last_name:"peric", username:"jpseric", status_id:1, password_ciphertext:"12345678", creator_id: 1, updater_id:1}
             ])
 
