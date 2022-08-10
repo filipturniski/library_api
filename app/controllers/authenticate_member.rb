@@ -10,8 +10,8 @@ class AuthenticateMember < ActionController::API
     authenticate_or_request_with_http_basic do |username, password|
 
       begin
-        if Member.searchActiveMemeberUsername(username).first.password_ciphertext == password
-          params[:member_id] = Member.searchActiveMemeberUsername(username).first.id
+        if User.searchActiveMemeberUsername(username).first.password_ciphertext == password
+          params[:member_id] = User.searchActiveMemeberUsername(username).first.id
         else
           render json: {message: 'wrong login password'}, status: 401
         end

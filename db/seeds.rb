@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Loan.destroy_all
-Member.destroy_all
+User.destroy_all
 Book.destroy_all
 Author.destroy_all
 Status.destroy_all
@@ -65,7 +65,7 @@ Book.create([
 ])
 
 
-Member.create([
+User.create([
               {id:1, first_name:'pero', last_name:"peric", username:"ppseric", status_id:1, password_ciphertext:"12345678"},
               {id:2, first_name:'šetf', last_name:"peric", username:"šperic", status_id:1, password_ciphertext:"12345678"},
               {id:3, first_name:'pero', last_name:"štefić", username:"pštevic", status_id:1, password_ciphertext:"12345678"},
@@ -73,20 +73,20 @@ Member.create([
             ])
 
 Loan.create([
-              {id:1, member_id:1, book_id:1, status_id:3},
-              {id:2, member_id:1, book_id:2, status_id:3},
-              {id:3, member_id:1, book_id:3, status_id:3},
-              {id:4, member_id:2, book_id:4, status_id:3},
-              {id:5, member_id:3, book_id:5, status_id:3},
-              {id:6, member_id:3, book_id:6, status_id:4},
-              {id:7, member_id:4, book_id:7, status_id:4},
-              {id:8, member_id:4, book_id:8, status_id:4},
-              {id:9, member_id:4, book_id:9, status_id:4},
-              {id:10, member_id:4, book_id:11, status_id:4},
-              {id:11, member_id:4, book_id:10, status_id:4},
-              {id:12, member_id:4, book_id:12, status_id:4},
-              {id:13, member_id:4, book_id:13, status_id:4},
-              {id:14, member_id:4, book_id:14, status_id:4}
+              {id:1, user_id:1, book_id:1, status_id:3},
+              {id:2, user_id:1, book_id:2, status_id:3},
+              {id:3, user_id:1, book_id:3, status_id:3},
+              {id:4, user_id:2, book_id:4, status_id:3},
+              {id:5, user_id:3, book_id:5, status_id:3},
+              {id:6, user_id:3, book_id:6, status_id:4},
+              {id:7, user_id:4, book_id:7, status_id:4},
+              {id:8, user_id:4, book_id:8, status_id:4},
+              {id:9, user_id:4, book_id:9, status_id:4},
+              {id:10, user_id:4, book_id:11, status_id:4},
+              {id:11, user_id:4, book_id:10, status_id:4},
+              {id:12, user_id:4, book_id:12, status_id:4},
+              {id:13, user_id:4, book_id:13, status_id:4},
+              {id:14, user_id:4, book_id:14, status_id:4}
             ]
 
 )
