@@ -4,7 +4,7 @@ class Author < ApplicationRecord
   validates :updater_id, presence: true
   belongs_to :status
   def self.search(searchMember)
-    where(" upper(name_author) LIKE upper(?) and status_id <> 5", "%#{searchMember}%")
+    where(" id in (select author_id from Book_views where upper(name_author) LIKE upper(?) or upper(name) LIKE upper(?)) and status_id <> 5", "%#{searchMember}%")
   end
 
   def self.active()

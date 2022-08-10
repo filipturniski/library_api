@@ -6,7 +6,7 @@ module Api
         def index
           authors = BookView.distinct.order('name ASC')
           authors = authors.search(params[:authorName]) if params[:authorName].present?
-          render json: {status: 'SUCCESS', message: 'Loaded Books', data:authors}, status: :ok
+          render json: {status: 'SUCCESS', message: 'Loaded Author', data:authors}, status: :ok
         end
 
       end

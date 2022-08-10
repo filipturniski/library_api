@@ -3,11 +3,7 @@ module Api
     class StatusController < ApplicationController
       def index
         status = Status.order('id ASC')
-        render json: {status: 'SUCCESS', message: 'Loaded Status', data:status}, status: :ok
-      end
-
-      def show
-        status = Status.find(params[:id])
+        status = status.search(params[:id]) if params[:id].present?
         render json: {status: 'SUCCESS', message: 'Loaded Status', data:status}, status: :ok
       end
     end
